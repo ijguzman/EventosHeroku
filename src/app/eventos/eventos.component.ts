@@ -9,18 +9,18 @@ import * as moment from 'moment';
 })
 export class EventosComponent implements OnInit {
 
-  constructor(private dto: DtoService) { 
+  constructor(public dto: DtoService) { 
     this.buscar=false;
     this.busqueda_todos=false;
     this.busqueda_uno=false;
   }
-  private Evento:any={};
-  private eventos:any={};
-  private evento:any;
-  private CodigoEvento:any;
-  private buscar:any;
-  private busqueda_todos:any;
-  private busqueda_uno:any;
+  public Evento:any={};
+  public eventos:any={};
+  public evento:any;
+  public CodigoEvento:any;
+  public buscar:any;
+  public busqueda_todos:any;
+  public busqueda_uno:any;
   ngOnInit() {
     
   }
