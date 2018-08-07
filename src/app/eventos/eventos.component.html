@@ -1,0 +1,108 @@
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-lg-12">
+          <!-- Left Side -->
+          <div class="card card-w-title">
+            <h1>Publicar Evento</h1>
+            <div class="form-group">
+              <div class="col-xs-2">
+                <input type="text" class="form-control input-sm" maxlength="15"  [(ngModel)]="Evento.code" pInputText placeholder="Código del Evento" required>
+              </div><br> <br> 
+              <div class="col-xs-2">
+                <input type="text" class="form-control input-sm" [(ngModel)]="Evento.name" pInputText placeholder="Nombre del Evento" required>
+              </div><br> <br>
+              <div class="col-xs-6">
+                <textarea class="form-control" rows="4" cols="50" [(ngModel)]="Evento.description" placeholder="Ingrese la descripción del Evento"  required>  </textarea>
+              </div><br> <br> <br> <br> <br>
+              <div class="col-xs-2">
+                  <input type="number" class="form-control input-sm" [(ngModel)]="Evento.seats" pInputText placeholder="Cantidad de asientos" required>
+              </div><br> <br>
+              <div class="col-xs-2">
+                <input type="date" class="form-control input-sm" [(ngModel)]="Evento.timestamp" pInputText placeholder="Fecha" required>
+              </div><br> <br>
+              <div class="col-xs-2">
+                  <input type="number" class="form-control input-sm" step="0.01" [(ngModel)]="Evento.price" pInputText placeholder="Precio" required>
+                </div><br> <br>
+              <div class="col-xs-2">
+                <button type="button" label="Publicar Evento" style="margin-bottom:10px" class="btn btn-primary" (click)="guardarEvento()">Guardar Evento</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br><br><br><br>
+      <div class="ui-g ui-fluid">
+          <div class="ui-g-12 ui-lg-12">
+            <!-- Left Side -->
+            <div class="card card-w-title">
+              <h1>Buscar Evento</h1>
+              <div class="form-group">
+        
+                <div class="col-xs-2">
+                  <input type="text" class="form-control input-sm" [(ngModel)]="CodigoEvento" pInputText placeholder="Buscar por código" required>
+                </div>
+                <div class="ui-g-6 ui-md-4">
+                    <button class="btn btn-primary" style="margin-bottom:10px"  (click)="buscarEvento()">Buscar Evento</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    
+    <div *ngIf="buscar">
+        <table class="table">
+          <thead>
+            <div *ngIf="busqueda_todos">
+              <tr>
+                <th style="width:2.5cm">Código</th>
+                <th style="width:3.5cm">Nombre Evento</th>
+                <th style="width:5.5cm">Descripción</th>
+                <th style="width:3.5cm">Fecha</th>
+                <th style="width:2.5cm">Nro Asientos</th>
+                <th style="width:2.5cm">Precio entrada</th>
+              </tr>
+            </div>
+            <div *ngIf="busqueda_uno"> 
+                <tr>
+                    <th style="width:2.5cm">Código</th>
+                    <th style="width:3.5cm">Nombre Evento</th>
+                    <th style="width:5.5cm">Descripción</th>
+                    <th style="width:3.5cm">Fecha</th>
+                    <th style="width:2.5cm">Nro Asientos</th>
+                    <th style="width:2.5cm">Precio entrada</th>
+                </tr>
+            </div>
+          </thead>
+          <tbody>
+            <div *ngIf="busqueda_todos">
+              <tr *ngFor="let x of eventos">
+                <td style="width:2.5cm">{{ x.code }}</td>
+                <td style="width:3.5cm">{{ x.name }}</td>
+                <td style="width:5.5cm">{{ x.description }}</td>
+                <td style="width:3.5cm">{{ x.timestamp }}</td>
+                <td style="width:2.5cm">{{ x.seats }}</td>
+                <td style="width:2.5cm">{{ x.price }}</td>
+                <td>
+                    <button pButton class="btn" icon="fa-edit" (click)="editarEvento(x)">Modificar</button>
+                    &nbsp;&nbsp;
+                    <button pButton class="btn btn-danger" icon="fa-trash" (click)="eliminarEvento(x)">Eliminar</button>
+                </td>
+              </tr>
+            </div>
+            <div *ngIf="busqueda_uno">
+              <tr>
+                <td style="width:2.5cm">{{eventos.code }}</td>
+                <td style="width:3.5cm">{{eventos.name}}</td>
+                <td style="width:5.5cm">{{eventos.description}}</td>
+                <td style="width:3.5cm">{{eventos.timestamp }}</td>
+                <td style="width:2.5cm">{{eventos.seats }}</td>
+                <td style="width:2.5cm">{{eventos.price }}</td>
+                <td>
+                    <button pButton class="btn" icon="fa-edit" (click)="editarEvento(eventos)">Modificar</button>
+                    &nbsp;&nbsp;
+                    <button pButton class="btn btn-danger" icon="fa-trash" (click)="eliminarEvento(eventos)">Eliminar</button>
+                </td>
+              </tr>
+            </div>
+          </tbody>
+        </table>
+    </div>
